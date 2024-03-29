@@ -1,0 +1,15 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  #???
+  port: 8080
+  servlet:
+    # ????
+    context-path: /dems
+    session:
+      cookie:
+        http-only: true
+spring:
+  profiles:
+    active: db,knife4j
+
