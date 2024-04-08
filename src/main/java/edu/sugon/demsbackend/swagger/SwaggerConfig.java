@@ -35,7 +35,7 @@ public class SwaggerConfig {
                                 new SecurityScheme()
                                         .name(HttpHeaders.AUTHORIZATION)
                                         .type(SecurityScheme.Type.APIKEY)
-                                        .in(SecurityScheme.In.HEADER)));
+                                        .in(SecurityScheme.In.HEADER))); //指定参数位于headers中
     }
     @Bean
     public GlobalOpenApiCustomizer globalOpenApiCustomizer(){
