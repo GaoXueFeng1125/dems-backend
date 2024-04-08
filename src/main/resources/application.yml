@@ -11,5 +11,5 @@ server:
         http-only: true
 spring:
   profiles:
-    active: db,knife4j
+    active: db,knife4j,satoken
 
