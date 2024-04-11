@@ -13,3 +13,10 @@ spring:
   profiles:
     active: db,knife4j,satoken
 
+logging:
+  level:
+    com.baomidou.mybatisplus: DEBUG
+    edu.sugon.demsbackend.dao: DEBUG
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
