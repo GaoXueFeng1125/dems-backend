@@ -69,7 +69,7 @@ implements IRoleInfo {
 
     @Override
     public PageResult<RoleInfo> page(RoleInfoPageVo vo) {
-        IPage<RoleInfo> page = new Page<>(vo.getCur(),vo.getPageSize());
+        IPage<RoleInfo> page = new Page<>(vo.getCurrent(),vo.getPageSize());
         QueryWrapper<RoleInfo> wrapper = new QueryWrapper<>();
         wrapper.lambda()
                 .like(Strings.isNotEmpty(vo.getRoleName()),

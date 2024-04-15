@@ -1,5 +1,6 @@
 package edu.sugon.demsbackend.common;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import edu.sugon.demsbackend.enums.YesNoEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -16,10 +17,12 @@ public class BaseEntity {
     @Schema(name = "createdBy",title = "创建人")
     private String createdBy;
     @Schema(name = "createdTime",title = "创建时间")
+    @JsonFormat(pattern = "yyyy年MM月dd日 HH:mm")
     private Date createdTime;
     @Schema(name = "updatedBy",title = "修改人")
     private String updatedBy;
     @Schema(name = "updatedTime",title = "修改时间")
+    @JsonFormat(pattern = "yyyy年MM月dd日 HH:mm")
     private Date updatedTime;
     @Schema(name = "deleteFlag",title = "删除标记")
     private YesNoEnum deleteFlag;

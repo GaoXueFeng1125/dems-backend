@@ -8,8 +8,8 @@ import lombok.Setter;
 @Setter
 @Schema(name = "BasePageVo",title = "基本分页")
 public class BasePageVo {
-    @Schema(name = "cur",title = "当前页")
-    private int cur;
+    @Schema(name = "current",title = "当前页")
+    private int current;
     @Schema(name = "pageSize",title = "每页条数")
     private int pageSize = 20;
 }

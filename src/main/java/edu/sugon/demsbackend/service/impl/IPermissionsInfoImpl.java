@@ -86,7 +86,7 @@ implements IPermissionsInfo {
 
     @Override
     public PageResult<PermissionsInfo> page(PermissionsInfoPageVo vo) {
-        IPage<PermissionsInfo> page = new Page<>(vo.getCur(),vo.getPageSize());
+        IPage<PermissionsInfo> page = new Page<>(vo.getCurrent(),vo.getPageSize());
         QueryWrapper<PermissionsInfo> wrapper = new QueryWrapper<>();
         wrapper.lambda()
                 .like(Strings.isNotEmpty(vo.getPermissionName()),PermissionsInfo::getPermissionName,vo.getPermissionName())
