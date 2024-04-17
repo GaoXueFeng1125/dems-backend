@@ -5,6 +5,6 @@ public class BaseUtil {
         return str.contains(" ");
     }
     public static boolean strIsEmpty(String str){
-        return str == "";
+        return str.equals("");
     }
 }
