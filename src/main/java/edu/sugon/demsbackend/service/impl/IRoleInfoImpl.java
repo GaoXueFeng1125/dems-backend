@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import edu.sugon.demsbackend.common.BaseUtil;
 import edu.sugon.demsbackend.common.PageResult;
 import edu.sugon.demsbackend.dao.RoleInfoDao;
 import edu.sugon.demsbackend.entity.RoleInfo;
@@ -34,6 +35,12 @@ implements IRoleInfo {
         if (Objects.nonNull(entity)){
             throw new Exception("角色名称已存在!");
         }
+        if (BaseUtil.hasSpaceChar(vo.getRoleName())){
+            throw new Exception("角色名称不可包含空格!");
+        }
+        if (BaseUtil.strIsEmpty(vo.getRoleName())){
+            throw new Exception("角色名称不能为空");
+        }
         entity = new RoleInfo();
         BeanUtils.copyProperties(vo,entity);
         entity.preSave(StpUtil.getLoginIdAsString());
@@ -61,7 +68,12 @@ implements IRoleInfo {
         if (Objects.nonNull(entity1)){
             throw new Exception("角色已存在!");
         }
-
+        if (BaseUtil.hasSpaceChar(vo.getRoleName())){
+            throw new Exception("角色名称不可包含空格!");
+        }
+        if (BaseUtil.strIsEmpty(vo.getRoleName())){
+            throw new Exception("角色名称不能为空");
+        }
         BeanUtils.copyProperties(vo,entity);
         entity.preUpdate(StpUtil.getLoginIdAsString());
         return super.updateById(entity);
