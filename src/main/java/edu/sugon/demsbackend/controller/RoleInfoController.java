@@ -4,6 +4,7 @@ package edu.sugon.demsbackend.controller;
 import edu.sugon.demsbackend.common.PageResult;
 import edu.sugon.demsbackend.common.Result;
 import edu.sugon.demsbackend.entity.RoleInfo;
+import edu.sugon.demsbackend.service.IRoleInfo;
 import edu.sugon.demsbackend.service.impl.IRoleInfoImpl;
 import edu.sugon.demsbackend.vo.RoleInfoPageVo;
 import edu.sugon.demsbackend.vo.RoleInfoVo;
@@ -22,7 +23,7 @@ import java.util.List;
 @RequestMapping("/role")
 public class RoleInfoController {
     @Resource
-    private IRoleInfoImpl iRoleInfo;
+    private IRoleInfo iRoleInfo;
 
     @Operation(summary = "根据角色名称模糊查询分页")
     @Parameters({

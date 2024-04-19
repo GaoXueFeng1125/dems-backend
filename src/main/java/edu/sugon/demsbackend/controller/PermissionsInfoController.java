@@ -3,6 +3,7 @@ package edu.sugon.demsbackend.controller;
 import edu.sugon.demsbackend.common.PageResult;
 import edu.sugon.demsbackend.common.Result;
 import edu.sugon.demsbackend.entity.PermissionsInfo;
+import edu.sugon.demsbackend.service.IPermissionsInfo;
 import edu.sugon.demsbackend.service.impl.IPermissionsInfoImpl;
 import edu.sugon.demsbackend.vo.PermissionsInfoPageVo;
 import edu.sugon.demsbackend.vo.PermissionsInfoVo;
@@ -21,7 +22,7 @@ import java.util.List;
 @RequestMapping("/permissions")
 public class PermissionsInfoController {
     @Resource
-    private IPermissionsInfoImpl iPermissionsInfo;
+    private IPermissionsInfo iPermissionsInfo;
 
     @Operation(summary = "根据权限名称模糊查询分页")
     @Parameters({

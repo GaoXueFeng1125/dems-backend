@@ -5,6 +5,7 @@ import edu.sugon.demsbackend.common.BaseUtil;
 import edu.sugon.demsbackend.common.PageResult;
 import edu.sugon.demsbackend.common.Result;
 import edu.sugon.demsbackend.entity.BuildInfo;
+import edu.sugon.demsbackend.service.IBuildInfo;
 import edu.sugon.demsbackend.service.impl.IBuildInfoImpl;
 import edu.sugon.demsbackend.vo.BuildInfoPageVo;
 import edu.sugon.demsbackend.vo.BuildInfoVo;
@@ -14,7 +15,6 @@ import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping("/build")
 public class BuildInfoController {
     @Resource
-    private IBuildInfoImpl iBuildInfo;
+    private IBuildInfo iBuildInfo;
 
     @Operation(summary = "根据楼栋号与楼栋名称模糊查询分页")
     @Parameters({
