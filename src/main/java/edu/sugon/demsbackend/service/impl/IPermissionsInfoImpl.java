@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import edu.sugon.demsbackend.common.BaseUtil;
 import edu.sugon.demsbackend.common.PageResult;
 import edu.sugon.demsbackend.dao.PermissionsInfoDao;
 import edu.sugon.demsbackend.entity.PermissionsInfo;
@@ -40,8 +41,20 @@ implements IPermissionsInfo {
         if (Objects.nonNull(entity)){
             throw new Exception("权限名称已存在");
         }
+        if (BaseUtil.strIsEmpty(vo.getPermissionName())){
+            throw new Exception("权限名称不能为空");
+        }
+        if (BaseUtil.hasSpaceChar(vo.getPermissionName())){
+            throw new Exception("权限名称不能含有空格");
+        }
         if (Objects.nonNull(entityRoute)){
             throw new Exception("路由已存在");
+        }
+        if (BaseUtil.strIsEmpty(vo.getRoute())){
+            throw new Exception("路由不能为空");
+        }
+        if (BaseUtil.hasSpaceChar(vo.getRoute())){
+            throw new Exception("路由地址不得包含空格");
         }
         entity = new PermissionsInfo();
         BeanUtils.copyProperties(vo,entity);
@@ -77,6 +90,18 @@ implements IPermissionsInfo {
         }
         if (Objects.isNull(entityId)){
             throw new Exception("权限不存在");
+        }
+        if (BaseUtil.strIsEmpty(vo.getRoute())){
+            throw new Exception("路由不能为空");
+        }
+        if (BaseUtil.hasSpaceChar(vo.getRoute())){
+            throw new Exception("路由地址不得包含空格");
+        }
+        if (BaseUtil.strIsEmpty(vo.getPermissionName())){
+            throw new Exception("权限名称不能为空");
+        }
+        if (BaseUtil.hasSpaceChar(vo.getPermissionName())){
+            throw new Exception("权限名称不能含有空格");
         }
         BeanUtils.copyProperties(vo,entityId);
         entityId.preUpdate(StpUtil.getLoginIdAsString());

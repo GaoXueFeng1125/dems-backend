@@ -25,7 +25,7 @@ public class PermissionsInfoController {
 
     @Operation(summary = "根据权限名称模糊查询分页")
     @Parameters({
-            @Parameter(name = "cur",description = "当前页",in = ParameterIn.QUERY),
+            @Parameter(name = "current",description = "当前页",in = ParameterIn.QUERY),
             @Parameter(name = "pageSize",description = "每页条数",in = ParameterIn.QUERY),
             @Parameter(name = "permissionsName",description = "权限名称",in = ParameterIn.QUERY)
 

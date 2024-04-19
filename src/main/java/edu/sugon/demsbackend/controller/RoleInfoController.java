@@ -26,7 +26,7 @@ public class RoleInfoController {
 
     @Operation(summary = "根据角色名称模糊查询分页")
     @Parameters({
-            @Parameter(name = "cur",description = "当前页",in = ParameterIn.QUERY),
+            @Parameter(name = "current",description = "当前页",in = ParameterIn.QUERY),
             @Parameter(name = "pageSize",description = "每页条数",in = ParameterIn.QUERY),
             @Parameter(name = "roleName",description = "角色名称",in = ParameterIn.QUERY),
     })
@@ -37,7 +37,7 @@ public class RoleInfoController {
 
     @Operation(summary = "根据ID获取角色信息")
     @GetMapping("/{id}")
-    public Result<RoleInfo> pageById(@PathVariable("id") String id){
+    public Result<RoleInfo> getById(@PathVariable("id") String id){
         RoleInfo info = iRoleInfo.getById(id);
         return Result.success(info);
     }

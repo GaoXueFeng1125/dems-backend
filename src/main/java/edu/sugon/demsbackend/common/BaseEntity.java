@@ -17,12 +17,12 @@ public class BaseEntity {
     @Schema(name = "createdBy",title = "创建人")
     private String createdBy;
     @Schema(name = "createdTime",title = "创建时间")
-    @JsonFormat(pattern = "yyyy年MM月dd日 HH:mm")
+    @JsonFormat(pattern = "yyyy年MM月dd日 HH:mm",timezone = "GMT+8")
     private Date createdTime;
     @Schema(name = "updatedBy",title = "修改人")
     private String updatedBy;
     @Schema(name = "updatedTime",title = "修改时间")
-    @JsonFormat(pattern = "yyyy年MM月dd日 HH:mm")
+    @JsonFormat(pattern = "yyyy年MM月dd日 HH:mm",timezone = "GMT+8")
     private Date updatedTime;
     @Schema(name = "deleteFlag",title = "删除标记")
     private YesNoEnum deleteFlag;

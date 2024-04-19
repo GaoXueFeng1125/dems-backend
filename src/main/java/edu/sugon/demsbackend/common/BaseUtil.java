@@ -7,4 +7,7 @@ public class BaseUtil {
     public static boolean strIsEmpty(String str){
         return str.equals("");
     }
+    public static boolean isPositiveInt(String str){
+        return str.matches("^[0-9]*$") && str.length()>0 && !(str.charAt(0) == '0');
+    }
 }
