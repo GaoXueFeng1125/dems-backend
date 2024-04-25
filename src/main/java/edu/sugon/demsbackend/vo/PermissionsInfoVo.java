@@ -1,5 +1,6 @@
 package edu.sugon.demsbackend.vo;
 
+import edu.sugon.demsbackend.enums.DirMenuEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ public class PermissionsInfoVo {
     @Schema(name = "permissionName",title = "权限名称")
     private String permissionName;
     @Schema(name = "permissionType",title = "权限类型")
-    private String permissionType;
+    private DirMenuEnum permissionType;
     @Schema(name = "route",title = "路由地址")
     private String route;
     @Schema(name = "remark",title = "备注")

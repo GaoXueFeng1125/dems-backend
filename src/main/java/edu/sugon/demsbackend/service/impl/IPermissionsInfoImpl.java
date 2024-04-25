@@ -9,6 +9,7 @@ import edu.sugon.demsbackend.common.BaseUtil;
 import edu.sugon.demsbackend.common.PageResult;
 import edu.sugon.demsbackend.dao.PermissionsInfoDao;
 import edu.sugon.demsbackend.entity.PermissionsInfo;
+import edu.sugon.demsbackend.enums.DirMenuEnum;
 import edu.sugon.demsbackend.enums.YesNoEnum;
 import edu.sugon.demsbackend.service.IPermissionsInfo;
 import edu.sugon.demsbackend.vo.PermissionsInfoPageVo;
@@ -82,10 +83,10 @@ implements IPermissionsInfo {
         PermissionsInfo entityName = this.getOne(wrapperName);
         PermissionsInfo entityRoute = this.getOne(wrapperRoute);
         PermissionsInfo entityId = this.getOne(wrapperId);
-        if (Objects.nonNull(entityName)){
+        if (Objects.nonNull(entityName) && (!vo.getId().equals(entityId.getId()))){
             throw new Exception("权限名称已存在");
         }
-        if (Objects.nonNull(entityRoute)){
+        if (Objects.nonNull(entityRoute) && (!vo.getId().equals(entityId.getId()))){
             throw new Exception("路由已存在");
         }
         if (Objects.isNull(entityId)){
@@ -114,7 +115,8 @@ implements IPermissionsInfo {
         IPage<PermissionsInfo> page = new Page<>(vo.getCurrent(),vo.getPageSize());
         QueryWrapper<PermissionsInfo> wrapper = new QueryWrapper<>();
         wrapper.lambda()
-                .like(Strings.isNotEmpty(vo.getPermissionName()),PermissionsInfo::getPermissionName,vo.getPermissionName())
+                .like(Strings.isNotEmpty(vo.getPermissionName()),
+                        PermissionsInfo::getPermissionName,vo.getPermissionName())
                 .eq(PermissionsInfo::getDeleteFlag,YesNoEnum.NO.getValue());
         page = this.page(page,wrapper);
         PageResult<PermissionsInfo> result = new PageResult<>();

@@ -65,8 +65,8 @@ implements IRoleInfo {
                 .eq(RoleInfo::getDeleteFlag,YesNoEnum.NO.getValue());
         //entity1用作接受wrapper1结果 如果可以查到说明角色名称已存在 则执行下面的if
         RoleInfo entity1 = this.getOne(wrapper1);
-        if (Objects.nonNull(entity1)){
-            throw new Exception("角色已存在!");
+        if (Objects.nonNull(entity1) && (!vo.getId().equals(entity1.getId()))){
+            throw new Exception("角色名称已存在!");
         }
         if (BaseUtil.hasSpaceChar(vo.getRoleName())){
             throw new Exception("角色名称不可包含空格!");

@@ -28,7 +28,7 @@ public class PermissionsInfoController {
     @Parameters({
             @Parameter(name = "current",description = "当前页",in = ParameterIn.QUERY),
             @Parameter(name = "pageSize",description = "每页条数",in = ParameterIn.QUERY),
-            @Parameter(name = "permissionsName",description = "权限名称",in = ParameterIn.QUERY)
+            @Parameter(name = "permissionName",description = "权限名称",in = ParameterIn.QUERY)
 
     })
     @GetMapping("/page")
@@ -48,7 +48,6 @@ public class PermissionsInfoController {
     public Result<String> save(@RequestBody PermissionsInfoVo vo) throws Exception{
         iPermissionsInfo.save(vo);
         return Result.success();
-
     }
     @Operation(summary = "修改权限")
     @PutMapping()
