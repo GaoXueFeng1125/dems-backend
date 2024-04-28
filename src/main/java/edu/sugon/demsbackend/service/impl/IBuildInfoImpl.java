@@ -28,7 +28,7 @@ implements IBuildInfo {
     public boolean save(BuildInfoVo vo) throws Exception {
         QueryWrapper<BuildInfo> wrapper = new QueryWrapper<>();
         wrapper.lambda()
-                .eq(BuildInfo::getBuildingsNo,vo.getBuildingsName())
+                .eq(BuildInfo::getBuildingsNo,vo.getBuildingsNo())
                 .eq(BuildInfo::getDeleteFlag, YesNoEnum.NO.getValue());
         BuildInfo entity = this.getOne(wrapper);
         if(Objects.nonNull(entity)){
@@ -46,10 +46,18 @@ implements IBuildInfo {
     @Override
     public boolean update(BuildInfoVo vo) throws Exception {
         QueryWrapper<BuildInfo> wrapper = new QueryWrapper<>();
+        QueryWrapper<BuildInfo> wrapperNo = new QueryWrapper<>();
         wrapper.lambda()
                 .eq(BuildInfo::getId,vo.getId())
                 .eq(BuildInfo::getDeleteFlag,YesNoEnum.NO.getValue());
+        wrapperNo.lambda()
+                .eq(BuildInfo::getBuildingsNo,vo.getBuildingsNo())
+                .eq(BuildInfo::getDeleteFlag, YesNoEnum.NO.getValue());
         BuildInfo entity = this.getOne(wrapper);
+        BuildInfo entityNo = this.getOne(wrapperNo);
+        if(Objects.nonNull(entityNo) && !(vo.getId().equals(entityNo.getId()))){
+            throw new Exception("楼栋号已存在");
+        }
         if (Objects.isNull(entity)){
             throw new Exception("楼栋不存在");
         }

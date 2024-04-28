@@ -57,7 +57,7 @@ public class BuildInfoController {
     @PutMapping()
     public Result<String> update(@RequestBody BuildInfoVo vo) throws Exception{
         if (!BaseUtil.isPositiveInt(vo.getBuildingsNo())){
-            throw new Exception("楼栋号只能为正整数!");
+            throw new Exception("楼栋号不能为空且只能为正整数!");
         }
         iBuildInfo.update(vo);
         return Result.success();

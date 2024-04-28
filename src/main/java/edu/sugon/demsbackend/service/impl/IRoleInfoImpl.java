@@ -107,7 +107,7 @@ implements IRoleInfo {
         String userId = StpUtil.getLoginIdAsString();
         if (Objects.nonNull(ids)){
             for (String id : ids){
-                RoleInfo info = this.getById(id);
+                RoleInfo info = getById(id);
                 if(Objects.nonNull(info)){
                     info.preDelete(userId);
                     this.updateById(info);

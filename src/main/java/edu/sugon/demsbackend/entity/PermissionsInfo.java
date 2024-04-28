@@ -14,7 +14,7 @@ import lombok.Setter;
 public class PermissionsInfo extends BaseEntity {
     @Schema(name = "permissionName",title = "权限名称")
     private String permissionName;
-    @Schema(name = "permissionsType",title = "权限类型")
+    @Schema(name = "permissionType",title = "权限类型")
     private DirMenuEnum permissionType;
     @Schema(name = "route",title = "路由地址")
     private String route;
