@@ -41,6 +41,9 @@ implements IFloorInfo {
                 .eq(BuildInfo::getDeleteFlag,YesNoEnum.NO.getValue());
         FloorInfo entity = this.getOne(wrapper);
         BuildInfo entity2 = iBuildInfo.getOne(wrapper2);
+        if (Objects.isNull(entity2)){
+            throw new Exception("楼栋不存在");
+        }
         if (Objects.nonNull(entity)){
             throw new Exception("楼层已存在");
         }
@@ -101,11 +104,12 @@ implements IFloorInfo {
     public PageResult<FloorInfo> page(FloorInfoPageVo vo) {
         IPage<FloorInfo> page = new Page<>(vo.getCurrent(),vo.getPageSize());
         QueryWrapper<FloorInfo> wrapper = new QueryWrapper<>();
-        wrapper.lambda()
+        wrapper.eq("floor_info.DELETE_FLAG",YesNoEnum.NO.getValue())
+                .lambda()
                 .like(FloorInfo::getFloorNo,vo.getFloorNo())
-                .eq(FloorInfo::getBuildingsId,vo.getBuildingsId())
-                .eq(FloorInfo::getDeleteFlag,YesNoEnum.NO.getValue());
-        page = this.page(page,wrapper);
+                .eq(FloorInfo::getBuildingsId,vo.getBuildingsId());
+//        page = this.page(page,wrapper);
+        page = this.baseMapper.selectPage(page,wrapper);
         PageResult<FloorInfo> result = new PageResult<>();
         result.setItems(page.getRecords());
         result.setTotal(page.getTotal());

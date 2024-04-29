@@ -1,43 +1,30 @@
 package edu.sugon.demsbackend.controller;
 
-import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.captcha.CaptchaUtil;
+import cn.hutool.captcha.LineCaptcha;
 import cn.hutool.captcha.ShearCaptcha;
+import cn.hutool.core.lang.Console;
 import edu.sugon.demsbackend.common.Result;
 import edu.sugon.demsbackend.vo.LoginVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.awt.image.BufferedImage;
 
 @Getter
 @Setter
+@Tag(name = "验证码测试接口")
 @RestController
-@Tag(name = "登录")
-public class LoginController {
-
+public class CaptChaController {
     private String verifyCode;
-    @Operation(summary = "登录")
-    @PostMapping("/login")
-    public Result<String> login(@RequestBody LoginVo vo){
-        if ("admin".equals(vo.getUserNo()) && vo.getVerifyCode().equals(this.verifyCode)){
-            StpUtil.login("112");
-            String tokenInfo = StpUtil.getTokenValue();
-            return Result.success(tokenInfo);
-        }
-        return Result.error("登录失败");
-    }
-    @Operation(summary = "测试")
-    @PostMapping("/test")
-    public Result<String> test(){
-        return Result.success(StpUtil.getLoginIdAsString());
-    }
-
-
     @Operation(summary = "验证码")
-//    @RequestMapping("/noAuth")
-    @GetMapping("/captcha")
+    @PostMapping("/captcha")
     public String getCaptcha(){
         ShearCaptcha captcha = CaptchaUtil.createShearCaptcha(200,100,4,4);
         captcha.write("d:/shear.png");
@@ -46,4 +33,15 @@ public class LoginController {
         return "data:image/jpeg;base64," + captcha.getImageBase64();
 //        return captcha.getImage();
     }
+
+    @Operation(summary = "验证")
+    @PostMapping("/verify")
+    public boolean verifyCap(@RequestBody LoginVo vo){
+        if (vo.getVerifyCode().equals(this.verifyCode)){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 }

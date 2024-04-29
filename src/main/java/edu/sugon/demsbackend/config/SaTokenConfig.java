@@ -25,6 +25,7 @@ public class SaTokenConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns(
                         "/login"
+                        ,"/captcha"
                         ,"/swagger/**"
                         ,"/swagger-ui.html"
                         , "/webjars/**"

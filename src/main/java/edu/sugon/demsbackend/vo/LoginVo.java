@@ -14,6 +14,7 @@ public class LoginVo {
     private String userNo;
     @Schema(name = "password",title = "密码")
     private String password;
-
+    @Schema(name = "verifyCode",title = "验证码")
+    private String verifyCode;
 
 }

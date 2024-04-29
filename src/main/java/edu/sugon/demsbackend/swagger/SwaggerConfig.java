@@ -42,7 +42,7 @@ public class SwaggerConfig {
         return openApi -> {
             if (openApi.getPaths() != null){
                 openApi.getPaths().forEach((s,pathItem)->{
-                    if (s.equals("/login")){
+                    if (s.equals("/login") || s.equals("/captcha")){
                         return;
                     }
                     pathItem.readOperations().forEach(operation -> operation.addSecurityItem(new
