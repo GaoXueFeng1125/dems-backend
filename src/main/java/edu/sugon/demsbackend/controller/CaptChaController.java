@@ -1,21 +1,18 @@
 package edu.sugon.demsbackend.controller;
 
 import cn.hutool.captcha.CaptchaUtil;
-import cn.hutool.captcha.LineCaptcha;
 import cn.hutool.captcha.ShearCaptcha;
-import cn.hutool.core.lang.Console;
-import edu.sugon.demsbackend.common.Result;
+
+
 import edu.sugon.demsbackend.vo.LoginVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.awt.image.BufferedImage;
 
 @Getter
 @Setter
