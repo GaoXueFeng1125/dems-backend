@@ -36,14 +36,12 @@ public class LoginController {
 
 
     @Operation(summary = "验证码")
-//    @RequestMapping("/noAuth")
     @GetMapping("/captcha")
-    public String getCaptcha(){
+    public Result<String> getCaptcha(){
         ShearCaptcha captcha = CaptchaUtil.createShearCaptcha(200,100,4,4);
         captcha.write("d:/shear.png");
         this.setVerifyCode(captcha.getCode());
         System.out.println(captcha.getCode());
-        return "data:image/jpeg;base64," + captcha.getImageBase64();
-//        return captcha.getImage();
+        return Result.success("data:image/jpeg;base64," + captcha.getImageBase64());
     }
 }

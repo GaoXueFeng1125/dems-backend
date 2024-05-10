@@ -97,6 +97,14 @@ implements IBuildInfo {
     }
 
     @Override
+    public List<BuildInfo> list() {
+        QueryWrapper<BuildInfo> wrapper = new QueryWrapper<>();
+        wrapper.lambda()
+                .eq(BuildInfo::getDeleteFlag,YesNoEnum.NO.getValue());
+        return super.list(wrapper);
+    }
+
+    @Override
     public void delete(List<String> ids) {
         String userId = StpUtil.getLoginIdAsString();
         if (Objects.nonNull(ids)){

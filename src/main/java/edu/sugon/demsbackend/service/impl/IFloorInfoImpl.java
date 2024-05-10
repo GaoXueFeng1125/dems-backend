@@ -16,6 +16,7 @@ import edu.sugon.demsbackend.service.IFloorInfo;
 import edu.sugon.demsbackend.vo.FloorInfoPageVo;
 import edu.sugon.demsbackend.vo.FloorInfoVo;
 import jakarta.annotation.Resource;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -106,8 +107,8 @@ implements IFloorInfo {
         QueryWrapper<FloorInfo> wrapper = new QueryWrapper<>();
         wrapper.eq("floor_info.DELETE_FLAG",YesNoEnum.NO.getValue())
                 .lambda()
-                .like(FloorInfo::getFloorNo,vo.getFloorNo())
-                .eq(FloorInfo::getBuildingsId,vo.getBuildingsId());
+                .like(Strings.isNotEmpty(vo.getFloorNo()),FloorInfo::getFloorNo,vo.getFloorNo())
+                .eq(Strings.isNotEmpty(vo.getBuildingsId()),FloorInfo::getBuildingsId,vo.getBuildingsId());
 //        page = this.page(page,wrapper);
         page = this.baseMapper.selectPage(page,wrapper);
         PageResult<FloorInfo> result = new PageResult<>();

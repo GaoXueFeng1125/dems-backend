@@ -38,7 +38,7 @@ public class FloorInfoController {
     }
 
     @Operation(summary = "根据ID获取楼层信息")
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
     public Result<FloorInfo> getById(@PathVariable("id") String id){
         FloorInfo info = iFloorInfo.getById(id);
         return Result.success(info);

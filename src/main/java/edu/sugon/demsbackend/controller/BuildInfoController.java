@@ -5,6 +5,7 @@ import edu.sugon.demsbackend.common.BaseUtil;
 import edu.sugon.demsbackend.common.PageResult;
 import edu.sugon.demsbackend.common.Result;
 import edu.sugon.demsbackend.entity.BuildInfo;
+import edu.sugon.demsbackend.entity.FloorInfo;
 import edu.sugon.demsbackend.service.IBuildInfo;
 import edu.sugon.demsbackend.service.impl.IBuildInfoImpl;
 import edu.sugon.demsbackend.vo.BuildInfoPageVo;
@@ -67,6 +68,11 @@ public class BuildInfoController {
     public Result<String> delete(@PathVariable("ids") List<String> ids){
         iBuildInfo.delete(ids);
         return Result.success();
+    }
+    @Operation(summary = "楼栋列表")
+    @GetMapping("list")
+    public Result<List<BuildInfo>> list(){
+        return Result.success(iBuildInfo.list());
     }
 
 }
