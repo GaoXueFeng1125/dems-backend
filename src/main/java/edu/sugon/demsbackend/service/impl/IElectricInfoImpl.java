@@ -26,7 +26,6 @@ public class IElectricInfoImpl extends ServiceImpl<ElectricInfoDao, ElectricInfo
 
     @Override
     public boolean save(ElectricInfoVo vo) throws Exception {
-        System.out.println(vo.getMeterNo());
         QueryWrapper<ElectricInfo> wrapper = new QueryWrapper<>();
         wrapper.lambda()
                 .eq(ElectricInfo::getMeterNo, vo.getMeterNo())

@@ -15,4 +15,6 @@ public class ElectricInfo extends BaseEntity {
     private float power;
     @Schema(name = "meterNo", title = "电表编号")
     private String meterNo;
+    @Schema(name = "remark",title = "备注")
+    private String remark;
 }
